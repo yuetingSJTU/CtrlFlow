@@ -1,0 +1,43 @@
+# CtrlFlow项目的集群配置文件，手动写死了集群，每次重新部署时需要修改本文件
+
+## java类和加载
+env.lib: -classpath ".;./lib/*"
+
+## jvm options
+### 使用串行垃圾回收器
+env.opts: -XX:+UseParallelGC
+
+## Cluster options
+### 配置 Master, 运行 ResourceManager 和 JobManager
+cluster.master.address: 192.168.196.76
+cluster.master.port: 55443
+
+jobmanager.heap.size: 128m
+
+### 配置 Worker, 运行 TaskManager, 持有计算资源
+cluster.worker1.address: 192.168.196.1
+cluster.worker1.port: 55443
+
+cluster.worker2.address: 192.168.196.2
+cluster.worker2.port: 55443
+
+cluster.worker3.address: 192.168.196.3
+cluster.worker3.port: 55443
+
+cluster.worker4.address: 192.168.196.4
+cluster.worker4.port: 55443
+
+cluster.worker5.address: 192.168.196.5
+cluster.worker5.port: 55443
+
+cluster.worker6.address: 192.168.196.76
+cluster.worker6.port: 55442
+
+### 每个 TaskManager 提供 1 GB 内存
+taskmanager.memory.process.size: 1024m
+
+### 默认每个 TaskManager 划分为 1 个 slot 且默认并行度为 1
+taskmanager.numberOfTaskSlots: 1
+parallelism.default: 1
+
+
